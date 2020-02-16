@@ -1,0 +1,75 @@
+{
+  "name": "express-typescript-starter",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "build": "npm run clean:dist && npm run build-ts && npm run lint",
+    "build-ts": "tsc",
+    "clean:dist": "rimraf dist",
+    "debug": "npm run build && npm run watch-debug",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "serve": "node dist/server.js",
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "start": "npm run serve",
+    "test": "jest --forceExit --coverage --verbose",
+    "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
+    "watch-node": "nodemon dist/server.js",
+    "watch-test": "npm run test -- --watchAll",
+    "watch-ts": "tsc -w",
+    "prettier": "npx prettier --write \"./**/*.{ts,js,json,md}\""
+  },
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "compression": "1.7.4",
+    "dotenv": "8.2.0",
+    "errorhandler": "1.5.1",
+    "express": "4.17.1",
+    "express-session": "1.16.2",
+    "express-validator": "6.2.0",
+    "lusca": "1.6.1",
+    "winston": "3.2.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "1.17.1",
+    "@types/chai": "4.2.3",
+    "@types/compression": "1.0.1",
+    "@types/concurrently": "4.1.0",
+    "@types/errorhandler": "0.0.32",
+    "@types/eslint": "6.1.1",
+    "@types/express": "4.17.1",
+    "@types/express-session": "1.15.14",
+    "@types/jest": "24.0.23",
+    "@types/lusca": "1.6.1",
+    "@types/node": "12.7.8",
+    "@types/request": "2.48.3",
+    "@types/supertest": "2.0.8",
+    "@types/winston": "2.4.4",
+    "@typescript-eslint/eslint-plugin": "2.19.2",
+    "@typescript-eslint/parser": "2.19.2",
+    "chai": "4.2.0",
+    "concurrently": "5.0.0",
+    "eslint": "6.4.0",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-destructuring": "2.1.0",
+    "eslint-plugin-prettier": "3.1.2",
+    "jest": "24.9.0",
+    "nodemon": "1.19.2",
+    "prettier": "1.19.1",
+    "rimraf": "3.0.2",
+    "supertest": "4.0.2",
+    "ts-jest": "24.1.0",
+    "ts-node": "8.4.1",
+    "typescript": "3.6.3"
+  }
+}

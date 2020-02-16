@@ -1,5 +1,5 @@
 {
-  "name": "express-typescript-starter",
+  "name": "typescript-node-api",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
